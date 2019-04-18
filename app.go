@@ -105,11 +105,11 @@ func NewNameServiceApp(logger log.Logger, db dbm.DB) *nameServiceApp {
 
     // The app.QueryRouter is the main query router where each module registers its routes
     app.QueryRouter().
-        AddRoute("nameservice", democoin.NewQuerier(app.nsKeeper)).
+        AddRoute("nameservice", democoin.NewQuerier(app.nsKeeper))    //.
         //AddRoute("acc", auth.NewQuerier(app.accountKeeper))
 
     // The initChainer handles translating the genesis.json file into initial state for the network
-    //app.SetInitChainer(app.initChainer)
+    app.SetInitChainer(app.initChainer)
 
     app.MountStores(
         app.keyMain,
