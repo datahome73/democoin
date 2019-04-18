@@ -46,7 +46,7 @@ func main() {
 
 	rootCmd := &cobra.Command{
 		Use:               "nsd",
-		Short:             "nameservice App Daemon (server)",
+		Short:             "democoin App Daemon (server)",
 		PersistentPreRunE: server.PersistentPreRunEFn(ctx),
 	}
 
