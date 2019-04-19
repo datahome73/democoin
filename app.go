@@ -25,7 +25,7 @@ const (
     appName = "democoin"
 )
 
-type nameServiceApp struct {
+type demoCoinApp struct {
     *bam.BaseApp
     cdc *codec.Codec
 
@@ -43,8 +43,8 @@ type nameServiceApp struct {
     nsKeeper            democoin.Keeper
 }
 
-// NewNameServiceApp is a constructor function for nameServiceApp
-func NewNameServiceApp(logger log.Logger, db dbm.DB) *nameServiceApp {
+// NewdemoCoinApp is a constructor function for demoCoinApp
+func NewdemoCoinApp(logger log.Logger, db dbm.DB) *demoCoinApp {
 
     // First define the top level codec that will be shared by the different modules
     cdc := MakeCodec()
@@ -53,7 +53,7 @@ func NewNameServiceApp(logger log.Logger, db dbm.DB) *nameServiceApp {
     bApp := bam.NewBaseApp(appName, logger, db, auth.DefaultTxDecoder(cdc))
 
     // Here you initialize your application with the store keys it requires
-    var app = &nameServiceApp{
+    var app = &demoCoinApp{
         BaseApp: bApp,
         cdc:     cdc,
 
@@ -135,7 +135,7 @@ type GenesisState struct {
     Accounts []*auth.BaseAccount `json:"accounts"`
 }
 
-func (app *nameServiceApp) initChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
+func (app *demoCoinApp) initChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
     stateJSON := req.AppStateBytes
 
     genesisState := new(GenesisState)
@@ -156,7 +156,7 @@ func (app *nameServiceApp) initChainer(ctx sdk.Context, req abci.RequestInitChai
 }
 
 // ExportAppStateAndValidators does the things
-func (app *nameServiceApp) ExportAppStateAndValidators() (appState json.RawMessage, validators []tmtypes.GenesisValidator, err error) {
+func (app *demoCoinApp) ExportAppStateAndValidators() (appState json.RawMessage, validators []tmtypes.GenesisValidator, err error) {
     ctx := app.NewContext(true, abci.Header{})
     accounts := []*auth.BaseAccount{}
 
